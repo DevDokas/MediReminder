@@ -1,4 +1,4 @@
-export default function homePage(): React.ReactNode {
+export default function HomePage(): any {
   return (
     <>
       <h1>oi</h1>

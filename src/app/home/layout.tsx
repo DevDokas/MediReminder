@@ -1,63 +1,114 @@
 'use client';
-import Link from 'next/link';
 import * as React from 'react';
+import { useState } from 'react';
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FolderIcon from '@mui/icons-material/Folder';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import RestoreIcon from '@mui/icons-material/Restore';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import { Body } from '@/components/Body';
+import {
+  Header,
+  PhotoContainer,
+  Photo,
+  InfoContainer,
+  Name,
+  Streak
+} from '@/components/Head';
+import {
+  Navbar,
+  HomeButton,
+  LeafletButton,
+  CalendarButton,
+  ProfileButton
+} from '@/components/Navbar';
+
+import CalendarPage from './calendar/page';
+import LeafletPage from './leaflet/page';
+import HomePage from './page';
+import ProfilePage from './profile/page';
 
 export default function ProfileLayout({
   children
 }: {
   children: React.ReactNode;
 }): any {
-  const [value, setValue] = React.useState('recents');
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string): any => {
-    setValue(newValue);
-  };
+  const [selectMain, setSelectMain] = useState<boolean>(true);
+  const [enabledMain, setEnabledMain] = useState<string>('Enabled');
+  const [selectLeaflet, setSelectLeaflet] = useState<boolean>(false);
+  const [enabledLeaflet, setEnabledLeaflet] = useState<string>('Disabled');
+  const [selectCalendar, setSelectCalendar] = useState<boolean>(false);
+  const [enabledCalendar, setEnabledCalendar] = useState<string>('Disabled');
+  const [selectProfile, setSelectProfile] = useState<boolean>(false);
+  const [enabledProfile, setEnabledProfile] = useState<string>('Disabled');
 
   return (
     <>
-      <header>hey</header>
-      {children}
-      <BottomNavigation
-        sx={{ position: 'fixed', bottom: 0, width: '100%' }}
-        value={value}
-        onChange={handleChange}
-      >
-        <Link href="/home">
-          <BottomNavigationAction
-            label="Recents"
-            value="recents"
-            icon={<RestoreIcon />}
-          />
-        </Link>
-        <Link href="/home/leaflet">
-          <BottomNavigationAction
-            label="Favorites"
-            value="favorites"
-            icon={<FavoriteIcon />}
-          />
-        </Link>
-        <Link href="/home/calendar">
-          <BottomNavigationAction
-            label="Nearby"
-            value="nearby"
-            icon={<LocationOnIcon />}
-          />
-        </Link>
-        <Link href="/home/profile">
-          <BottomNavigationAction
-            label="Folder"
-            value="folder"
-            icon={<FolderIcon />}
-          />
-        </Link>
-      </BottomNavigation>
+      <Header>
+        <PhotoContainer>
+          <Photo />
+        </PhotoContainer>
+        <InfoContainer>
+          <Name>Fulano</Name>
+          <Streak>X Dias</Streak>
+        </InfoContainer>
+      </Header>
+      <Body>
+        {selectMain ? <HomePage /> : null}
+        {selectLeaflet ? <LeafletPage /> : null}
+        {selectCalendar ? <CalendarPage /> : null}
+        {selectProfile ? <ProfilePage /> : null}
+      </Body>
+      <Navbar>
+        <HomeButton
+          className={enabledMain}
+          onClick={function () {
+            setSelectMain(true);
+            setSelectLeaflet(false);
+            setSelectCalendar(false);
+            setSelectProfile(false);
+            setEnabledMain('Enabled');
+            setEnabledLeaflet('Disabled');
+            setEnabledCalendar('Disabled');
+            setEnabledProfile('Disabled');
+          }}
+        />
+        <LeafletButton
+          className={enabledLeaflet}
+          onClick={function () {
+            setSelectMain(false);
+            setSelectLeaflet(true);
+            setSelectCalendar(false);
+            setSelectProfile(false);
+            setEnabledMain('Disabled');
+            setEnabledLeaflet('Enabled');
+            setEnabledCalendar('Disabled');
+            setEnabledProfile('Disabled');
+          }}
+        />
+        <CalendarButton
+          className={enabledCalendar}
+          onClick={function () {
+            setSelectMain(false);
+            setSelectLeaflet(false);
+            setSelectCalendar(true);
+            setSelectProfile(false);
+            setEnabledMain('Disabled');
+            setEnabledLeaflet('Disabled');
+            setEnabledCalendar('Enabled');
+            setEnabledProfile('Disabled');
+          }}
+        />
+        <ProfileButton
+          className={enabledProfile}
+          onClick={function () {
+            setSelectMain(false);
+            setSelectLeaflet(false);
+            setSelectCalendar(false);
+            setSelectProfile(true);
+            setEnabledMain('Disabled');
+            setEnabledLeaflet('Disabled');
+            setEnabledCalendar('Disabled');
+            setEnabledProfile('Enabled');
+          }}
+        />
+      </Navbar>
     </>
   );
 }
