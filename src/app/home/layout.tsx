@@ -25,7 +25,7 @@ export default function ProfileLayout({
       <header>hey</header>
       {children}
       <BottomNavigation
-        sx={{ width: 500 }}
+        sx={{ position: 'fixed', bottom: 0, width: '100%' }}
         value={value}
         onChange={handleChange}
       >
