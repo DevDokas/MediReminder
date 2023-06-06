@@ -19,10 +19,11 @@ import {
   ProfileButton
 } from '@/components/Navbar';
 
-import CalendarPage from './calendar/page';
-import LeafletPage from './leaflet/page';
+import ProfileImage from '../../../public/profile.png';
+import CalendarPage from '../calendar/page';
+import LeafletPage from '../leaflet/page';
+import ProfilePage from '../profile/page';
 import HomePage from './page';
-import ProfilePage from './profile/page';
 
 export default function ProfileLayout({
   children
@@ -38,14 +39,15 @@ export default function ProfileLayout({
   const [selectProfile, setSelectProfile] = useState<boolean>(false);
   const [enabledProfile, setEnabledProfile] = useState<string>('Disabled');
 
+  // TODO: Vincular front-end com backend (Nome, Streaks e foto do usuário ativo)
   return (
     <>
       <Header>
         <PhotoContainer>
-          <Photo />
+          <Photo src={ProfileImage.src} />
         </PhotoContainer>
         <InfoContainer>
-          <Name>Fulano</Name>
+          <Name>Igor Nogueira Gomes de Sousa</Name>
           <Streak>X Dias</Streak>
         </InfoContainer>
       </Header>

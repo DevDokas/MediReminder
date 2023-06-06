@@ -1,7 +1,7 @@
 export default function HomePage(): any {
   return (
     <>
-      <h1>oi</h1>
+      <h1>Home</h1>
     </>
   );
 }
