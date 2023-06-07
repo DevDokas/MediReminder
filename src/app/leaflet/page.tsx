@@ -62,6 +62,7 @@ export default function LeafletPage(): any {
                 <ResultName>{res.nomeProduto}</ResultName>
                 <Link
                   href={`https://bula.vercel.app/pdf?id=${res.idBulaProfissionalProtegido}`}
+                  target="_blank"
                 >
                   Ler a bula
                 </Link>
