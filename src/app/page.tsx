@@ -1,18 +1,23 @@
-import Link from 'next/link';
+'use client';
 import React from 'react';
 
-export default function Home(): any {
+import { db } from '@/config/db';
+import { useLiveQuery } from 'dexie-react-hooks';
+
+export default function HomePage(): any {
+  const profile = useLiveQuery(async () => db.profile.toArray());
   return (
     <main>
-      <form action="#">
-        <input type="text" />
-        <input type="password" />
-        <Link href="/home">Entrar</Link>
-      </form>
-      <span>
-        <Link href="/passwordRecovery">Esqueci a senha</Link>
-        <Link href="/register">Registrar-se</Link>
-      </span>
+      <h1>Home</h1>
+      <ul>
+        {profile?.map((person: any): any => {
+          return (
+            <li key={person.id}>
+              {person.name}, {person.lastName}, {person.age}
+            </li>
+          );
+        })}
+      </ul>
     </main>
   );
 }

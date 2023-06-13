@@ -38,6 +38,10 @@ export const InfoContainer = styled.div`
 export const Name = styled.p`
   font-size: 2vh;
   font-weight: 600;
+
+  span {
+    font-weight: 500;
+  }
 `;
 
 export const Streak = styled.span``;

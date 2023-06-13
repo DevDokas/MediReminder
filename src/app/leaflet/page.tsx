@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { FaSistrix } from 'react-icons/fa';
 
-import { Loading } from '@/components/Loading';
+import Loading from '@/components/Loading';
 import {
   LeafletContainer,
   SearchContainer,
