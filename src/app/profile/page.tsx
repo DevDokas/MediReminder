@@ -15,7 +15,6 @@ export default function ProfilePage(): any {
   async function checking(): Promise<any> {
     await db.profile.count().then((count) => {
       profileCheck = count;
-      console.log(count);
     });
   }
 

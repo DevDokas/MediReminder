@@ -41,7 +41,22 @@ export default function RootLayout({
   const [enabledCalendar, setEnabledCalendar] = useState<string>('Disabled');
   const [selectProfile, setSelectProfile] = useState<boolean>(false);
   const [enabledProfile, setEnabledProfile] = useState<string>('Disabled');
+  const [profileCheck, setProfileCheck] = useState<boolean>(false);
   const profile = useLiveQuery(async () => db.profile.toArray());
+
+  async function checking(): Promise<any> {
+    await db.profile.count().then((count) => {
+      if (count >= 1) {
+        setProfileCheck(true);
+      } else if (count <= 0) {
+        setProfileCheck(false);
+      }
+    });
+  }
+
+  checking();
+
+  console.log(profileCheck);
 
   const userName = profile
     ?.filter((res) => {
@@ -66,9 +81,6 @@ export default function RootLayout({
     .map((res) => {
       return res.age;
     });
-
-  console.log(profile);
-  console.log(userName);
 
   return (
     <html lang="en">
@@ -124,7 +136,11 @@ export default function RootLayout({
           </PhotoContainer>
           <InfoContainer>
             <Name>
-              {userName} {userLastName}, <span>{userAge} anos</span>
+              {profileCheck ? (
+                <>
+                  {userName} {userLastName}, <span>{userAge} anos</span>
+                </>
+              ) : null}
             </Name>
             <Streak>X Dias</Streak>
           </InfoContainer>
