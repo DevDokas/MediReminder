@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "MediReminder",
-  "short_name": "MediReminder",
-  "description": "your ultimate medication management app designed to help you effortlessly remember and stay on track with your prescribed medications.",
+  "name": "MindZen",
+  "short_name": "MindZen",
+  "description": "Seu companheiro de saúde mental e lembrete para remédios psiquiátricos em um único aplicativo. Com o MindZen, você nunca mais esquecerá de tomar seus medicamentos e terá um acompanhamento visual do seu tratamento e do estado da sua saúde mental.",
   "icons": [
       {
           "src": "/icon-192x192.png",

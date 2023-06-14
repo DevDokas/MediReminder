@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import './globals.css';
 
@@ -19,7 +19,7 @@ import {
   CalendarButton,
   ProfileButton
 } from '@/components/Navbar';
-import { type Profile, db } from '@/config/db';
+import { db } from '@/config/db';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 import ProfileImage from '../../public/profile.png';
@@ -27,12 +27,6 @@ import CalendarPage from '../app/calendar/page';
 import LeafletPage from '../app/leaflet/page';
 import ProfilePage from '../app/profile/page';
 import HomePage from './page';
-
-export const metadata = {
-  title: 'MediReminder',
-  description:
-    ' Your ultimate medication management app designed to help you effortlessly remember and stay on track with your prescribed medications.'
-};
 
 export default function RootLayout({
   children
@@ -117,7 +111,7 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <title>MediReminder</title>
+        <title>MindZen</title>
         <meta
           name="description"
           content="Your ultimate medication management app designed to help you effortlessly remember and stay on track with your prescribed medications."
